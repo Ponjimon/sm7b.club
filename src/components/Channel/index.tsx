@@ -45,7 +45,7 @@ export const Channel: FC<ChannelProps> = ({
         <BadgeWrapper position="bottomLeft">
           <Badge>
             <BadgeText>
-              {numeral(viewers).format('0a').toUpperCase()} viewers
+              {numeral(viewers).format('0[.]0a').toUpperCase()} viewers
             </BadgeText>
           </Badge>
         </BadgeWrapper>

@@ -50,6 +50,14 @@ const channelNames = [
   'iBlali',
   'alessandra',
   'TherealJanHegenberg',
+  'SweeetTails',
+  'chairhandler',
+  'lisabby',
+  'TheGreatSkeletonMan',
+  'JarvonTV',
+  'JACKZON',
+  'Dex5_',
+  'johndillon',
 ];
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

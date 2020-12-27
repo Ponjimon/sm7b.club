@@ -40,6 +40,9 @@ Index.getInitialProps = () => ({
     'annelle',
     'nmplol',
     'fps_shaka',
+    'papaplatte',
+    'lumenti',
+    'arab',
   ].sort(() => Math.random() - 0.5),
 });
 

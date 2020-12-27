@@ -92,6 +92,18 @@ export const Wrapper = styled.a`
   &:hover {
     opacity: 1;
   }
+
+  &:hover {
+    &:after {
+      box-shadow: inset 0 0 0 4px #9146ff;
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
 `;
 
 export const AspectSpacer = styled.div`

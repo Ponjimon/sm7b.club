@@ -28,9 +28,15 @@ const Meta: FC = () => {
 const GlobalStyle = createGlobalStyle`
   ${reset};
 
+  html {
+    font-size: 62.5%;
+    text-size-adjust: 100%;
+  }
+
   body {
     background: #000;
     font-family: Roboto;
+    font-size: 1.3rem;
     overflow-x: hidden;
   }
 `;

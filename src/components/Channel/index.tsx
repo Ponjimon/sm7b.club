@@ -1,12 +1,24 @@
 import React, { FC } from 'react';
-import { AspectSpacer, Img, Wrapper, Info } from './styles';
+import {
+  AspectSpacer,
+  Wrapper,
+  Info,
+  LiveBadge,
+  LiveBadgeWrapper,
+  LiveBadgeText,
+} from './styles';
 
 export interface ChannelProps {
   user: string;
-  imgPath: string;
+  thumbnail: string;
+  isLive?: boolean;
 }
 
-export const Channel: FC<ChannelProps> = ({ user, imgPath }) => (
+export const Channel: FC<ChannelProps> = ({
+  user,
+  thumbnail: imgPath,
+  isLive,
+}) => (
   <Wrapper
     href={`https://twitch.tv/${user}`}
     target="_blank"
@@ -16,5 +28,12 @@ export const Channel: FC<ChannelProps> = ({ user, imgPath }) => (
     <Info>
       <span>{user}</span>
     </Info>
+    {isLive && (
+      <LiveBadgeWrapper>
+        <LiveBadge>
+          <LiveBadgeText>LIVE</LiveBadgeText>
+        </LiveBadge>
+      </LiveBadgeWrapper>
+    )}
   </Wrapper>
 );

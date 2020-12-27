@@ -1,49 +1,36 @@
 import { NextPage } from 'next';
 import React from 'react';
+import fetch from 'isomorphic-unfetch';
+import absoluteUrl from 'next-absolute-url';
 import { Channel } from '../components/Channel';
 import { ChannelList } from '../containers/ChannelList';
 
-const Index: NextPage<{ users: string[] }> = ({ users }) => (
+interface Channel {
+  channel: string;
+  thumbnail: string;
+  isLive: boolean;
+  viewers: number;
+}
+
+const Index: NextPage<{ channels: Channel[] }> = ({ channels }) => (
   <ChannelList>
-    {users
-      .map(user => ({ user, imgPath: `/static/live_user_${user}.jpg` }))
-      .map(({ user, imgPath }) => (
-        <Channel key={user} user={user} imgPath={imgPath} />
-      ))}
+    {channels.map(({ channel, thumbnail, isLive, viewers }) => (
+      <Channel
+        key={channel}
+        user={channel}
+        thumbnail={thumbnail}
+        isLive={isLive}
+      />
+    ))}
   </ChannelList>
 );
 
-Index.getInitialProps = () => ({
-  users: [
-    'hasanabi',
-    'ivysky',
-    'lillyvinnily',
-    'natsumiii',
-    'physicalgamerz',
-    'potasticp',
-    'spaceboy',
-    'barrr_none',
-    'ruutv',
-    'theartofkaidn',
-    'iamsimeonb',
-    'seamoose',
-    'ibanjy',
-    'its__cole',
-    'misspolaroid',
-    'illkingkilla',
-    'delt4forc3',
-    'barefoottasha',
-    'z_h_o_r_a',
-    'spiritendo',
-    'duendepablo',
-    'notsch_',
-    'annelle',
-    'nmplol',
-    'fps_shaka',
-    'papaplatte',
-    'lumenti',
-    'arab',
-  ].sort(() => Math.random() - 0.5),
-});
+Index.getInitialProps = async ({ req }) => {
+  const { origin } = absoluteUrl(req);
+  const res = await fetch(`${origin}/api/channels`);
+  const json = await res.json();
+
+  return json;
+};
 
 export default Index;

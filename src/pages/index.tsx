@@ -43,6 +43,13 @@ Index.getInitialProps = () => ({
     'papaplatte',
     'lumenti',
     'arab',
+    'trymacs',
+    'pobr4tski',
+    'kerem',
+    'thesmallpack',
+    'muusoo',
+    'monsterdface',
+    'jennyyl',
   ].sort(() => Math.random() - 0.5),
 });
 

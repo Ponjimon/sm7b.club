@@ -1,16 +1,16 @@
 import { NextPage } from 'next';
 import React from 'react';
 import { Channel } from '../components/Channel';
-import { Container } from '../containers/Container';
+import { ChannelList } from '../containers/ChannelList';
 
 const Index: NextPage<{ users: string[] }> = ({ users }) => (
-  <Container>
+  <ChannelList>
     {users
       .map(user => ({ user, imgPath: `/static/live_user_${user}.jpg` }))
       .map(({ user, imgPath }) => (
         <Channel key={user} user={user} imgPath={imgPath} />
       ))}
-  </Container>
+  </ChannelList>
 );
 
 Index.getInitialProps = () => ({

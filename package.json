@@ -12,10 +12,9 @@
     "next-offline": "^5.0.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-image-mosaic": "^1.0.4",
     "styled-components": "^5.2.1",
-    "styled-reset": "^4.3.4",
-    "styled-responsive": "^1.0.7"
+    "styled-media-helper": "^2.0.2",
+    "styled-reset": "^4.3.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -81,7 +80,8 @@
   },
   "eslintIgnore": [
     "next.config.js",
-    "lib/"
+    "lib/",
+    "*.d.ts"
   ],
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",

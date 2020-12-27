@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-import { media } from 'styled-responsive';
+import mediaHelper from 'styled-media-helper';
+
+const media = mediaHelper({
+  sm: 320,
+  md: 768,
+  lg: 1240,
+});
 
 export const Info = styled.div`
   position: absolute;
@@ -12,10 +18,13 @@ export const Info = styled.div`
   transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
   transition-delay: 0.2s;
   will-change: transform, opacity;
-  opacity: 0;
   z-index: 0;
   display: flex;
   align-items: center;
+
+  ${media.up('lg')} {
+    opacity: 0;
+  }
 `;
 
 export const Wrapper = styled.a`
@@ -27,19 +36,20 @@ export const Wrapper = styled.a`
   z-index: 0;
   line-height: 0;
   display: block;
-  max-width: calc(100vw / 6);
 
-  ${Info} {
-    transform: translateY(100%);
-  }
-
-  &:hover {
-    transform: scale(1.1);
-    z-index: 1;
-
+  ${media.up('lg')} {
     ${Info} {
-      transform: translateY(0%);
-      opacity: 1;
+      transform: translateY(100%);
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      z-index: 1;
+
+      ${Info} {
+        transform: translateY(0%);
+        opacity: 1;
+      }
     }
   }
 `;

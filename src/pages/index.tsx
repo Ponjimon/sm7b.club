@@ -20,6 +20,7 @@ const Index: NextPage<{ channels: Channel[] }> = ({ channels }) => (
         user={channel}
         thumbnail={thumbnail}
         isLive={isLive}
+        viewers={viewers}
       />
     ))}
   </ChannelList>

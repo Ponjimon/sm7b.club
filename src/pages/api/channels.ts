@@ -54,7 +54,7 @@ const channelNames = [
   'chairhandler',
   'lisabby',
   'TheGreatSkeletonMan',
-  'JarvonTV',
+  'JargonTV',
   'JACKZON',
   'Dex5_',
   'johndillon',

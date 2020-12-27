@@ -6,7 +6,6 @@ import { Container } from '../containers/Container';
 const Index: NextPage<{ users: string[] }> = ({ users }) => (
   <Container>
     {users
-      .sort(() => Math.random() - 0.5)
       .map(user => ({ user, imgPath: `/static/live_user_${user}.jpg` }))
       .map(({ user, imgPath }) => (
         <Channel key={user} user={user} imgPath={imgPath} />
@@ -39,7 +38,7 @@ Index.getInitialProps = () => ({
     'duendepablo',
     'notsch_',
     'annelle',
-  ],
+  ].sort(() => Math.random() - 0.5),
 });
 
 export default Index;

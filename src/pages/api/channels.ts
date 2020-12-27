@@ -45,6 +45,8 @@ const channelNames = [
   'juansguarnizo',
   'dekarldent',
   'julienbam',
+  'perxitaa',
+  'rewinside',
 ];
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -57,7 +59,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       )
       .map(channel => ({
         channel: channel,
-        thumbnail: `/static/live_user_${channel}.jpg`,
+        thumbnail: `https://s3.eu-central-1.amazonaws.com/cdn.sm7b.club/thumbnails/live_user_${channel}.jpg`,
         isLive: false,
         viewers: 0,
       })),

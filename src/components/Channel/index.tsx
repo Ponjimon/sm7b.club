@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Image from 'next/image';
 import {
   AspectSpacer,
   Wrapper,
@@ -24,7 +25,8 @@ export const Channel: FC<ChannelProps> = ({
     target="_blank"
     rel="noopener noreferrer"
   >
-    <AspectSpacer imgPath={imgPath} />
+    <AspectSpacer />
+    <Image src={imgPath} layout="fill" objectFit="cover" />
     <Info>
       <span>{user}</span>
     </Info>

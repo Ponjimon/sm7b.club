@@ -79,24 +79,8 @@ export const Wrapper = styled.a`
   }
 `;
 
-export const AspectSpacer = styled.div<{ imgPath: string }>`
+export const AspectSpacer = styled.div`
   padding-bottom: 56.25%;
   pointer-events: none;
-
-  background-image: url(${({ imgPath }) => imgPath});
-  background-size: cover;
   z-index: 1;
-`;
-
-export const Img = styled.img`
-  position: absolute;
-  left: 0;
-  width: 100%;
-  min-height: 100%;
-  top: 0;
-
-  max-width: 100%;
-  vertical-align: top;
-  pointer-events: none;
-  border: 0;
 `;

@@ -3,6 +3,9 @@ const nextSourceMaps = require('@zeit/next-source-maps')();
 const withPlugins = require('next-compose-plugins');
 
 const config = {
+  images: {
+    domains: ['s3.eu-central-1.amazonaws.com', 'static-cdn.jtvnw.net'],
+  },
   webpack: (config, { dev, isServer }) => {
     if (!dev) {
       config.devtool = 'source-map';

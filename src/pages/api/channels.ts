@@ -67,8 +67,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const channels = [
     ...channelNames
       .filter(
-        channel =>
-          !liveChannels.data.find(c => c.user_name.toLowerCase() === channel)
+        channel => !liveChannels.data.map(c => c.user_name).includes(channel)
       )
       .map(channel => ({
         channel: channel,

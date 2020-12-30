@@ -29,7 +29,7 @@ export const Channel: FC<ChannelProps> = ({
     className={isLive ? 'is-live' : ''}
   >
     <AspectSpacer />
-    <Image src={imgPath} layout="fill" objectFit="cover" />
+    <Image src={imgPath} layout="fill" objectFit="cover" priority />
     <BadgeWrapper position="bottomRight">
       <Badge>
         <BadgeText>{user}</BadgeText>

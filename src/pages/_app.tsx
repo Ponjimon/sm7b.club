@@ -38,6 +38,16 @@ const GlobalStyle = createGlobalStyle`
     font-family: Roboto;
     font-size: 1.3rem;
     overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      background: transparent;
+      width: .8rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #1f1f23;
+      border-radius: .4rem;
+    }
   }
 `;
 

@@ -66,6 +66,9 @@ const channelNames = [
   'Stayi',
   'Meloudya',
   'missypwns',
+  'Baso',
+  'PainLivestream',
+  'emmadizzy',
 ];
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

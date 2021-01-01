@@ -64,6 +64,7 @@ const channelNames = [
   'AnniTheDuck',
   'HerrNewstime',
   'Stayi',
+  'Meloudya',
 ];
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

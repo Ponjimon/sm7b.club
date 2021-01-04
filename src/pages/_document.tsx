@@ -44,6 +44,11 @@ export default class AppDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Roboto:400"
             rel="stylesheet"
           />
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon='{"token": "29e1d32fd2b1466580469c3b81fc0ce9"}'
+          />
         </Head>
         <body>
           <Main />

@@ -70,6 +70,7 @@ const channelNames = [
   'PainLivestream',
   'emmadizzy',
   'NebelNiek',
+  'Optimus_Slimed',
 ];
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

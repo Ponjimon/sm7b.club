@@ -77,5 +77,7 @@ export const CSSVariables = css`
     --color-opac-w-7: hsla(0, 0%, 100%, 0.4);
     --color-opac-w-8: hsla(0, 0%, 100%, 0.5);
     --color-opac-w-9: hsla(0, 0%, 100%, 0.6);
+    --color-twitch-purple: #9147ff;
+    --color-fill-live: #e91916;
   }
 `;

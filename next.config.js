@@ -4,7 +4,11 @@ const withPlugins = require('next-compose-plugins');
 
 const config = {
   images: {
-    domains: ['s3.eu-central-1.amazonaws.com', 'static-cdn.jtvnw.net'],
+    domains: [
+      's3.eu-central-1.amazonaws.com',
+      'static-cdn.jtvnw.net',
+      'ws-eu.amazon-adsystem.com',
+    ],
   },
   webpack: (config, { dev, isServer }) => {
     if (!dev) {

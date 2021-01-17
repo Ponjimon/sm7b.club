@@ -10,10 +10,11 @@ import {
 } from './styles';
 
 export interface ChannelProps {
-  user: string;
-  thumbnail: string;
+  user?: string;
+  thumbnail?: string;
   isLive?: boolean;
   viewers?: number;
+  isAd?: boolean;
 }
 
 export const Channel: FC<ChannelProps> = ({
@@ -21,34 +22,47 @@ export const Channel: FC<ChannelProps> = ({
   thumbnail: imgPath,
   isLive,
   viewers,
+  isAd,
 }) => (
   <Wrapper
-    href={`https://twitch.tv/${user}`}
+    href={isAd ? 'https://amzn.to/35KnLVB' : `https://twitch.tv/${user}`}
     target="_blank"
     rel="noopener noreferrer"
-    className={isLive ? 'is-live' : ''}
+    className={isLive || isAd ? 'is-live' : ''}
   >
     <AspectSpacer />
-    <Image src={imgPath} layout="fill" objectFit="cover" priority />
+    <Image
+      src={
+        isAd
+          ? 'https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=DE&ASIN=B0002E4Z8M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sm7bclub-21'
+          : imgPath
+      }
+      layout="fill"
+      objectFit="cover"
+      priority
+    />
+
     <BadgeWrapper position="bottomRight">
       <Badge>
         <BadgeText>{user}</BadgeText>
       </Badge>
     </BadgeWrapper>
-    {isLive && (
+    {(isLive || isAd) && (
       <>
         <BadgeWrapper position="topLeft">
-          <Badge variant="live">
-            <BadgeText>LIVE</BadgeText>
+          <Badge variant={isAd ? 'ad' : 'live'}>
+            <BadgeText>{isAd ? 'AD' : 'LIVE'}</BadgeText>
           </Badge>
         </BadgeWrapper>
-        <BadgeWrapper position="bottomLeft">
-          <Badge>
-            <BadgeText>
-              {numeral(viewers).format('0[.]0a').toUpperCase()} viewers
-            </BadgeText>
-          </Badge>
-        </BadgeWrapper>
+        {!isAd && (
+          <BadgeWrapper position="bottomLeft">
+            <Badge>
+              <BadgeText>
+                {numeral(viewers).format('0[.]0a').toUpperCase()} viewers
+              </BadgeText>
+            </Badge>
+          </BadgeWrapper>
+        )}
       </>
     )}
   </Wrapper>

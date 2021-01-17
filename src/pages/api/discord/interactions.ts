@@ -34,9 +34,12 @@ const handleUpload = async (
     };
   }
 
-  if (!url || (url && !url.startsWith('https://'))) {
+  if (!url) {
     // if no vaid URL is set, try to download current live URL
     url = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${channel.toLowerCase()}.jpg`;
+  }
+
+  if (url && !url.startsWith('https://')) {
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: { content: 'Invalid URL.' },
@@ -62,6 +65,7 @@ const handleUpload = async (
         },
       };
     }
+
     const data = await res.buffer();
     const { mime } = await fileTypeFromBuffer(data);
 

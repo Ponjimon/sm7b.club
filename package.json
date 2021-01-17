@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "s3:sync": "aws s3 cp channels.csv s3://cdn.sm7b.club/data/ --profile simon"
   },
   "dependencies": {
     "@hapi/boom": "^9.1.1",
@@ -33,6 +34,7 @@
     "@types/numeral": "^0.0.28",
     "@types/react": "^17.0.0",
     "@types/styled-components": "^5.1.7",
+    "@types/styled-system": "^5.1.10",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
     "@zeit/next-source-maps": "^0.0.3",

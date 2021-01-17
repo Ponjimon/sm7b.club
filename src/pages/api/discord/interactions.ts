@@ -6,6 +6,7 @@ import fetch from 'node-fetch';
 import { fromBuffer as fileTypeFromBuffer } from 'file-type';
 import { Interaction, InteractionResponse } from '../../../interfaces/discord';
 import { verifyKey } from '../../../utils/verify-key';
+
 export const config = {
   api: {
     bodyParser: false,
@@ -23,7 +24,7 @@ const handleUpload = async (
   }
   const { value: channel } =
     interaction.data?.options?.find(option => option.name === 'channel') || {};
-  const { value: url } =
+  let { value: url } =
     interaction.data?.options?.find(option => option.name === 'url') || {};
 
   if (!channel) {
@@ -34,6 +35,8 @@ const handleUpload = async (
   }
 
   if (!url || (url && !url.startsWith('https://'))) {
+    // if no vaid URL is set, try to download current live URL
+    url = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${channel.toLowerCase()}.jpg`;
     return {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: { content: 'Invalid URL.' },
@@ -49,6 +52,16 @@ const handleUpload = async (
 
   try {
     const res = await fetch(url);
+    const status = res.status;
+
+    if (status !== 200) {
+      return {
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: `Invalid channel \`${channel}\``,
+        },
+      };
+    }
     const data = await res.buffer();
     const { mime } = await fileTypeFromBuffer(data);
 

@@ -3,6 +3,7 @@ import Head from 'next/head';
 import React, { FC } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import reset from 'styled-reset';
+import { CSSVariables } from '../styles/variables';
 
 const Meta: FC = () => {
   const tagline = 'Twitch streamers using the Shure SM7B';
@@ -27,6 +28,7 @@ const Meta: FC = () => {
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
+  ${CSSVariables};
 
   html {
     font-size: 62.5%;

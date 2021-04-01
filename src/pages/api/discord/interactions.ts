@@ -80,7 +80,7 @@ const handleUpload = async (
     await s3
       .putObject({
         Bucket: process.env.S3_BUCKET_NAME,
-        Key: `thumbnails/live_user_${channel}.jpg`,
+        Key: `thumbnails/live_user_${channel.toLowerCase()}.jpg`,
         ContentType: mime,
         ContentLength: res.headers['content-length'],
         Body: data,

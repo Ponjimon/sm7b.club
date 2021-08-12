@@ -35,7 +35,7 @@ export const BadgeWrapper = styled.div<BadgeWrapperProps>`
 `;
 
 export interface BadgeProps {
-  variant?: 'default' | 'live' | 'ad';
+  variant?: 'default' | 'live';
 }
 
 export const Badge = styled.div<BadgeProps>`
@@ -51,17 +51,6 @@ export const Badge = styled.div<BadgeProps>`
         return css`
           border-radius: 0.4rem;
           background: var(--color-fill-live);
-          padding: 0 0.5rem;
-
-          ${BadgeText} {
-            text-transform: uppercase;
-            font-weight: 600;
-          }
-        `;
-      case 'ad':
-        return css`
-          border-radius: 0.4rem;
-          background: var(--color-twitch-purple);
           padding: 0 0.5rem;
 
           ${BadgeText} {

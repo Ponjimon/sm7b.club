@@ -91,7 +91,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   );
   const channelNames = queriedChannels.map(({ channel }) => channel);
   const liveChannels = await twitch.getStreams({ channels: channelNames });
-  const adIndex = Math.floor(Math.random() * liveChannels.data.length) + 1;
   const channels = [
     ...channelNames
       .filter(
@@ -120,5 +119,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     return 0;
   });
-  res.status(200).json({ total, channels, adIndex });
+  res.status(200).json({ total, channels });
 };

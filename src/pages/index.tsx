@@ -10,19 +10,17 @@ interface Channel {
   thumbnail: string;
   isLive: boolean;
   viewers: number;
-  isAd: boolean;
 }
 
 const Index: NextPage<{ channels: Channel[] }> = ({ channels }) => (
   <ChannelList>
-    {channels.map(({ channel, thumbnail, isLive, viewers, isAd }) => (
+    {channels.map(({ channel, thumbnail, isLive, viewers }) => (
       <Channel
         key={channel}
         user={channel}
         thumbnail={thumbnail}
         isLive={isLive}
         viewers={viewers}
-        isAd={isAd}
       />
     ))}
   </ChannelList>
@@ -31,11 +29,7 @@ const Index: NextPage<{ channels: Channel[] }> = ({ channels }) => (
 Index.getInitialProps = async ({ req }) => {
   const { origin } = absoluteUrl(req);
   const res = await fetch(`${origin}/api/channels`);
-  const { channels, adIndex, ...rest } = await res.json();
-
-  channels.splice(adIndex, 0, { channel: 'Shure SM7B', isAd: true });
-
-  return { channels, ...rest };
+  return res.json();
 };
 
 export default Index;

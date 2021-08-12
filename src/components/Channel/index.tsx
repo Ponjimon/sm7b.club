@@ -29,6 +29,7 @@ export const Channel: FC<ChannelProps> = ({
     className={isLive ? 'is-live' : ''}
   >
     <AspectSpacer />
+    <Image src={imgPath} layout="fill" objectFit="cover" priority />
     <BadgeWrapper position="bottomRight">
       <Badge>
         <BadgeText>{user}</BadgeText>
@@ -47,7 +48,7 @@ export const Channel: FC<ChannelProps> = ({
               {numeral(viewers).format('0[.]0a').toUpperCase()} viewers
             </BadgeText>
           </Badge>
-        </BadgeWrapper> 
+        </BadgeWrapper>
       </>
     )}
   </Wrapper>

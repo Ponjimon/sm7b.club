@@ -1,5 +1,11 @@
 import { S3 } from 'aws-sdk';
-import { Events } from 'aws-sdk/clients/cognitosync';
+import {
+  ContinuationEvent,
+  EndEvent,
+  ProgressEvent,
+  RecordsEvent,
+  StatsEvent,
+} from 'aws-sdk/clients/s3';
 import { StreamingEventStream } from 'aws-sdk/lib/event-stream/event-stream';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import TwitchApi from 'node-twitch';
@@ -11,7 +17,13 @@ const twitch = new TwitchApi({
 
 const isStreamingEventsStream = (
   item: any
-): item is StreamingEventStream<Events> => typeof item.on === 'function';
+): item is StreamingEventStream<{
+  Records?: RecordsEvent;
+  Stats?: StatsEvent;
+  Progress?: ProgressEvent;
+  Cont?: ContinuationEvent;
+  End?: EndEvent;
+}> => typeof item.on === 'function';
 
 const queryChannels = <T = any>(expression: string) =>
   new Promise<T[]>(async (resolve, reject) => {

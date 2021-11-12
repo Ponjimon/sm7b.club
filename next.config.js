@@ -4,6 +4,9 @@ const withPlugins = require('next-compose-plugins');
 
 const config = {
   swcMinify: true,
+  experimental: {
+    styledComponents: true,
+  },
   images: {
     domains: [
       's3.eu-central-1.amazonaws.com',

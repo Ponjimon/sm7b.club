@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import numeral from 'numeral';
+import { getImageLoader } from '../../utils/image-loader';
 import {
   AspectSpacer,
   Wrapper,
@@ -29,7 +30,13 @@ export const Channel: FC<ChannelProps> = ({
     className={isLive ? 'is-live' : ''}
   >
     <AspectSpacer />
-    <Image src={imgPath} layout="fill" objectFit="cover" priority />
+    <Image
+      src={imgPath}
+      loader={getImageLoader()}
+      layout="fill"
+      objectFit="cover"
+      priority
+    />
     <BadgeWrapper position="bottomRight">
       <Badge>
         <BadgeText>{user}</BadgeText>

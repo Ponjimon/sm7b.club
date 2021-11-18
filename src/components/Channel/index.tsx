@@ -32,7 +32,10 @@ export const Channel: FC<ChannelProps> = ({
     <AspectSpacer />
     <Image
       src={imgPath}
-      loader={getImageLoader()}
+      unoptimized={process.env.NODE_ENV === 'development'}
+      loader={
+        process.env.NODE_ENV === 'development' ? undefined : getImageLoader()
+      }
       layout="fill"
       objectFit="cover"
       priority

@@ -32,13 +32,9 @@ export const Channel: FC<ChannelProps> = ({
     <AspectSpacer />
     <Image
       src={imgPath}
-      unoptimized={process.env.NODE_ENV === 'development'}
-      loader={
-        process.env.NODE_ENV === 'development' ? undefined : getImageLoader()
-      }
+      loader={getImageLoader()}
       layout="fill"
       objectFit="cover"
-      priority
     />
     <BadgeWrapper position="bottomRight">
       <Badge>

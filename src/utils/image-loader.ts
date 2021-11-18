@@ -17,4 +17,5 @@ export const getImageLoader = (): ImageLoader => {
   if (process.env.HOST === 'CLOUDFLARE') {
     return cloudflareLoader;
   }
+  return ({ src }) => normalizeSrc(src);
 };

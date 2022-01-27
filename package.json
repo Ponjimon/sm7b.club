@@ -1,134 +1,47 @@
 {
-  "name": "sm7b.club",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "s3:sync": "aws s3 cp channels.csv s3://cdn.sm7b.club/data/ --profile simon"
-  },
-  "dependencies": {
-    "@hapi/boom": "^9.1.4",
-    "aws-sdk": "2.1031.0",
-    "discord-interactions": "^1.3.3",
-    "discord.js": "^13.3.1",
-    "file-type": "^16.5.3",
-    "isomorphic-unfetch": "^3.1.0",
-    "next": "^12.0.4",
-    "next-absolute-url": "^1.2.2",
-    "next-offline": "^5.0.5",
-    "node-fetch": "^3.1.0",
-    "node-twitch": "^0.4.5",
-    "numeral": "^2.0.6",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "styled-components": "^5.3.3",
-    "styled-reset": "^4.3.4"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^15.0.0",
-    "@commitlint/config-conventional": "^15.0.0",
-    "@types/node": "^16.11.7",
-    "@types/node-fetch": "^3.0.3",
-    "@types/numeral": "^2.0.2",
-    "@types/react": "^17.0.35",
-    "@types/styled-components": "^5.1.15",
-    "@types/styled-system": "^5.1.13",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
-    "@zeit/next-source-maps": "^0.0.3",
-    "babel-plugin-styled-components": "^1.13.3",
-    "eslint": "^8.2.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.27.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "husky": "^4.3.6",
-    "lint-staged": "^10.5.3",
-    "next-compose-plugins": "^2.2.1",
-    "prettier": "^2.4.1",
-    "typescript": "^4.5.2"
-  },
-  "prettier": {
-    "trailingComma": "es5",
-    "singleQuote": true,
-    "semi": true,
-    "parser": "typescript",
-    "arrowParens": "avoid"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ]
-  },
-  "eslintIgnore": [
-    "next.config.js",
-    "lib/",
-    "*.d.ts"
-  ],
-  "eslintConfig": {
-    "parser": "@typescript-eslint/parser",
-    "extends": [
-      "plugin:react/recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:prettier/recommended",
-      "plugin:import/errors",
-      "plugin:import/warnings",
-      "plugin:import/typescript"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
+    "private": true,
+    "name": "remix-cloudflare-pages",
+    "description": "An opinionated template for running Remix on Cloudflare Pages.",
+    "license": "MIT",
+    "scripts": {
+      "prepare": "husky install",
+      "build": "cross-env NODE_ENV=production remix build",
+      "dev": "cross-env NODE_ENV=development run-p dev:*",
+      "postinstall": "remix setup cloudflare-pages",
+      "dev:remix": "remix watch",
+      "dev:wrangler": "wrangler pages dev ./public --watch ./build",
+      "start": "yarn run dev:wrangler"
     },
-    "settings": {
-      "react": {
-        "version": "detect"
-      },
-      "import/resolver": {
-        "typescript": {}
-      }
+    "dependencies": {
+      "@remix-run/cloudflare-pages": "^1.1.3",
+      "@remix-run/react": "^1.1.3",
+      "react": "^17.0.2",
+      "react-dom": "^17.0.2",
+      "remix": "^1.1.3"
     },
-    "plugins": [
-      "prettier",
-      "react-hooks"
-    ],
-    "rules": {
-      "prettier/prettier": "error",
-      "@typescript-eslint/camelcase": 0,
-      "@typescript-eslint/interface-name-prefix": 0,
-      "@typescript-eslint/explicit-function-return-type": 0,
-      "@typescript-eslint/explicit-member-accessibility": 0,
-      "@typescript-eslint/explicit-module-boundary-types": 0,
-      "@typescript-eslint/no-explicit-any": 0,
-      "@typescript-eslint/no-empty-interface": 0,
-      "prefer-arrow-callback": "error",
-      "prefer-const": "error",
-      "curly": "error",
-      "dot-notation": "error",
-      "sort-imports": 0,
-      "import/order": 1,
-      "import/no-named-as-default": 0,
-      "react-hooks/rules-of-hooks": 2,
-      "react-hooks/exhaustive-deps": 2,
-      "react/prop-types": 0
-    }
+    "devDependencies": {
+      "@cloudflare/workers-types": "^3.2.0",
+      "@commitlint/cli": "^16.1.0",
+      "@commitlint/config-conventional": "^16.0.0",
+      "@remix-run/dev": "^1.1.3",
+      "@remix-run/eslint-config": "^1.1.3",
+      "@types/react": "^17.0.24",
+      "@types/react-dom": "^17.0.9",
+      "cross-env": "^7.0.3",
+      "esbuild": "0.13.14",
+      "eslint": "^8.7.0",
+      "eslint-config-prettier": "^8.3.0",
+      "husky": "^7.0.4",
+      "lint-staged": "^12.3.1",
+      "npm-run-all": "^4.1.5",
+      "prettier": "^2.5.1",
+      "typescript": "^4.1.2",
+      "wrangler": "~0.0.10"
+    },
+    "engines": {
+      "node": ">=16.7"
+    },
+    "sideEffects": false,
+    "main": "dist/worker.js"
   }
-}
+  

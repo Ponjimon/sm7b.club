@@ -1,9 +1,0 @@
-{
-  "name": "SM7B Club",
-  "short_name": "SM7B CLub",
-  "background_color": "#000000",
-  "description": "Twitch streamers using the Shure SM7B",
-  "display": "fullscreen",
-  "start_url": "/",
-  "theme_color": "#9146FF"
-}

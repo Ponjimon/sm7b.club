@@ -2920,9 +2920,9 @@ lines-and-columns@^1.1.6:
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
 lint-staged@^12.3.1:
-  version "12.3.1"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-12.3.1.tgz#d475b0c0d0a12d91dde58a429ac6268dea485f06"
-  integrity sha512-Ocht/eT+4/siWOZDJpNUKcKX2UeWW/pDbohJ4gRsrafAjBi79JK8kiNVk2ciIVNKdw0Q4ABptl2nr6uQAlRImw==
+  version "12.3.2"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-12.3.2.tgz#c87fe59dca475b7d1cb56863c5faa03c145e1446"
+  integrity sha512-gtw4Cbj01SuVSfAOXC6ivd/7VKHTj51yj5xV8TgktFmYNMsZzXuSd5/brqJEA93v63wL7R6iDlunMANOechC0A==
   dependencies:
     cli-truncate "^3.1.0"
     colorette "^2.0.16"
@@ -5018,14 +5018,15 @@ word-wrap@^1.2.3:
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
 
 wrangler@~0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/wrangler/-/wrangler-0.0.10.tgz#952c5fb89dc808dd229c1cc10a6b0335b4e7bd16"
-  integrity sha512-x1CrXpaYqo4D09dO4efhXrakLZEINAw9bCE0r1xt4v1pxZRQmn5vDdfZF9AEneZohosz8R4XSYARIAk1NCSKdA==
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/wrangler/-/wrangler-0.0.13.tgz#16945dbd4d824b42071d82c2f8447bb1230857ab"
+  integrity sha512-PCOZ6YUY0mz5khL555Wydy6OSPkfYl3Hga8tvMsELKuBJmov+VRG4Z0HnT6chCBrrPyXeyu9aqVAiWxrwAdMhg==
   dependencies:
     esbuild "0.14.1"
     miniflare "2.2.0"
     path-to-regexp "^6.2.0"
     semiver "^1.1.0"
+    xxhash-addon "^1.4.0"
   optionalDependencies:
     fsevents "~2.3.2"
 
@@ -5090,6 +5091,11 @@ xdm@^2.0.0:
     vfile "^5.0.0"
   optionalDependencies:
     deasync "^0.1.0"
+
+xxhash-addon@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/xxhash-addon/-/xxhash-addon-1.4.0.tgz#b96a69aab2be18735b25b6f256144bd70ffffed9"
+  integrity sha512-n3Ml0Vgvy7jMYJBlQIoFLjYxXNZQ5CbzW8E2Ynq2QCUpWMqCouooW7j02+7Oud5FijBuSrjQNuN/fCiz1SHN+w==
 
 y18n@^5.0.5:
   version "5.0.8"

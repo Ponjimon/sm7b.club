@@ -9,21 +9,34 @@ export const loader: LoaderFunction = async ({ context }) => {
   const {
     env: { TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET },
   } = context;
-  const twitch = new ApiClient({
-    authProvider: new ClientCredentialsAuthProvider(
-      TWITCH_CLIENT_ID,
-      TWITCH_CLIENT_SECRET
-    ),
-  });
-  const channels = (await context.env.KV.get('channels', {
-    type: 'json',
-  })) as string[];
-  const { data } = await twitch.streams.getStreams({ userName: channels });
+  try {
+    const twitch = new ApiClient({
+      authProvider: new ClientCredentialsAuthProvider(
+        TWITCH_CLIENT_ID,
+        TWITCH_CLIENT_SECRET
+      ),
+    });
+    const channels = (await context.env.KV.get('channels', {
+      type: 'json',
+    })) as string[];
+    const { data } = await twitch.streams.getStreams({ userName: channels });
 
-  return json(
-    data.map(({ id, userName }) => ({ id, userName })),
-    { headers: { 'Cache-Control': 'max-age=10' } }
-  );
+    return json(
+      data.map(({ id, userName }) => ({ id, userName })),
+      { headers: { 'Cache-Control': 'max-age=10' } }
+    );
+  } catch (e) {
+    if (e instanceof Error) {
+      return {
+        error: e?.message,
+        data: JSON.stringify(context.env),
+      };
+    }
+
+    return {
+      data: JSON.stringify(context.env),
+    };
+  }
 };
 
 export const headers: HeadersFunction = ({ loaderHeaders }) => ({

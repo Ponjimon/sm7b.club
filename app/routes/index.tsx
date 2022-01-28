@@ -44,19 +44,13 @@ export const headers: HeadersFunction = ({ loaderHeaders }) => ({
 });
 
 export default function Index() {
-  const streams = useLoaderData<
-    HelixStream[] | { error?: string; data: string }
-  >();
+  const streams = useLoaderData<HelixStream[]>();
 
-  if (Array.isArray(streams)) {
-    return (
-      <>
-        {streams.map(({ id, userName }) => (
-          <div key={id}>{userName}</div>
-        ))}
-      </>
-    );
-  }
-
-  return <>{JSON.stringify({ ...streams, data: JSON.parse(streams.data) })}</>;
+  return (
+    <>
+      {streams.map(({ id, userName }) => (
+        <div key={id}>{userName}</div>
+      ))}
+    </>
+  );
 }

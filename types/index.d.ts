@@ -3,11 +3,11 @@
  */
 import type { Params } from 'react-router-dom';
 
-declare interface DataFunctionArgs<Context = any> {
+declare type DataFunctionArgs<Context = any> = {
   requuest: Request;
   context: Context;
   params: Params;
-}
+};
 
 declare type LoaderFunction<
   Context = EventContext<Env, any, any>,
@@ -16,8 +16,8 @@ declare type LoaderFunction<
   args: DataFunctionArgs<Context>
 ) => Promise<Response> | Response | Promise<AppData> | AppData;
 
-declare interface Env {
+declare type Env = {
   KV: KVNamespace;
   TWITCH_CLIENT_ID: string;
   TWITCH_CLIENT_SECRET: string;
-}
+};

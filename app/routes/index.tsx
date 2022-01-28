@@ -1,33 +1,20 @@
+import { useLoaderData } from 'remix';
+import type { Env, LoaderFunction } from '../../types';
+
+export const loader: LoaderFunction<
+  EventContext<Env, any, any>,
+  string[]
+> = async ({ context }) => {
+  return (await context.env.KV.get('channels', { type: 'json' })) as string[];
+};
+
 export default function Index() {
-  console.log(CACHE);
+  const channels = useLoaderData<string[]>();
   return (
-    <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-            target="_blank"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-            target="_blank"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a href="https://remix.run/docs" rel="noreferrer" target="_blank">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
+    <>
+      {channels.map(channel => (
+        <div key={channel}>{channel}</div>
+      ))}
+    </>
   );
 }

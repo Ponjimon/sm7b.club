@@ -1,19 +1,42 @@
+import { HeadersFunction, json } from '@remix-run/server-runtime';
 import { useLoaderData } from 'remix';
-import type { Env, LoaderFunction } from '../../types';
+import { ApiClient, HelixStream } from '@twurple/api';
+import { ClientCredentialsAuthProvider } from '@twurple/auth';
 
-export const loader: LoaderFunction<
-  EventContext<Env, any, any>,
-  string[]
-> = async ({ context }) => {
-  return (await context.env.KV.get('channels', { type: 'json' })) as string[];
+import type { LoaderFunction } from '../../types';
+
+export const loader: LoaderFunction = async ({ context }) => {
+  const {
+    env: { TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET },
+  } = context;
+  const twitch = new ApiClient({
+    authProvider: new ClientCredentialsAuthProvider(
+      TWITCH_CLIENT_ID,
+      TWITCH_CLIENT_SECRET
+    ),
+  });
+  const channels = (await context.env.KV.get('channels', {
+    type: 'json',
+  })) as string[];
+  const { data } = await twitch.streams.getStreams({ userName: channels });
+
+  return json(
+    data.map(({ id, userName }) => ({ id, userName })),
+    { headers: { 'Cache-Control': 'max-age=10' } }
+  );
 };
 
+export const headers: HeadersFunction = ({ loaderHeaders }) => ({
+  'Cache-Control': loaderHeaders.get('Cache-Control') ?? 'no-cache',
+});
+
 export default function Index() {
-  const channels = useLoaderData<string[]>();
+  const streams = useLoaderData<HelixStream[]>();
+
   return (
     <>
-      {channels.map(channel => (
-        <div key={channel}>{channel}</div>
+      {streams.map(({ id, userName }) => (
+        <div key={id}>{userName}</div>
       ))}
     </>
   );

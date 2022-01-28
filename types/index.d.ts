@@ -9,10 +9,15 @@ declare interface DataFunctionArgs<Context = any> {
   params: Params;
 }
 
-declare type LoaderFunction<Context = any, AppData = any> = (
+declare type LoaderFunction<
+  Context = EventContext<Env, any, any>,
+  AppData = any
+> = (
   args: DataFunctionArgs<Context>
 ) => Promise<Response> | Response | Promise<AppData> | AppData;
 
 declare interface Env {
   KV: KVNamespace;
+  TWITCH_CLIENT_ID: string;
+  TWITCH_CLIENT_SECRET: string;
 }
